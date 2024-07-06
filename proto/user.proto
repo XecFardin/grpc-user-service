@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./proto;user";
+import "google/protobuf/wrappers.proto";
+
+
+service UserService {
+    rpc GetUserByID(UserIDRequest) returns (UserResponse);
+    rpc GetUsersByIDs(UserIDsRequest) returns (UsersResponse);
+    rpc SearchUsers(SearchRequest) returns (UsersResponse);
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string city = 3;
+    int64 phone = 4;
+    float height = 5;
+    bool married = 6;
+}
+
+message UserIDRequest {
+    int32 id = 1;
+}
+
+message UserIDsRequest {
+    repeated int32 ids = 1;
+}
+
+message SearchRequest {
+    string city = 1;
+    int64 phone = 2;
+    google.protobuf.BoolValue married = 3;
+}
+
+message UserResponse {
+    User user = 1;
+}
+
+message UsersResponse {
+    repeated User users = 1;
+}
