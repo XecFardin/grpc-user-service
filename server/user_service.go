@@ -55,7 +55,6 @@ func (s *UserServiceServer) SearchUsers(ctx context.Context, req *pb.SearchReque
 			matches = false
 		}
 		if matches {
-			// Create a copy of the user before appending
 			u := user // Copy user to avoid pointer reference issues
 			result = append(result, &u)
 		}
