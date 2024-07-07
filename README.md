@@ -16,15 +16,22 @@ This is a Golang gRPC service that manages user details and includes search func
    ```sh
    git clone https://github.com/yourusername/grpc-user-service.git
    cd grpc-user-service
+
    ```
 
-2. Build the application:
+2. install neccessary dependencies
+
+   ```sh
+   go mod tidy
+   ```
+
+3. Build the application locally without Docker:
 
    ```sh
    go build -o main .
    ```
 
-3. Run the application:
+   Run the application:
 
    ```sh
    ./main
@@ -72,6 +79,8 @@ grpcurl --version
 
         ```sh
         grpcurl -plaintext -d '{"city": "LA"}' localhost:50051 user.UserService/SearchUsers
+        grpcurl -plaintext -d '{"married":true}' localhost:50051 user.UserService/SearchUsers
+        grpcurl -plaintext -d '{"phone": 1234567890}' localhost:50051 user.UserService/SearchUsers
         ```
 
     note: If you are using different go versions kindly do changes in you dockerfile
